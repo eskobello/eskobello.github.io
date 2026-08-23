@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  TWOJA STRONA — jeden plik, zero zależności, zero builda.
+
+  CO PODMIENIĆ (szukaj [EDYTUJ]):
+  1. Imię + jedno zdanie o sobie   → HERO
+  2. Akapit "o mnie"               → O MNIE
+  3. Projekty (kopiuj <article>)   → PROJEKTY
+  4. Stack                         → STACK
+  5. Mail i linki                  → HERO + KONTAKT
+
+  KOLORY: wszystkie w :root poniżej. Zmieniasz jedną linijkę,
+  zmienia się cała strona.
+  ============================================================
+-->
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- [EDYTUJ] tytuł w zakładce i w wynikach Google -->
+<title>Filip Skobel — Data & AI Engineering</title>
+<meta name="description" content="Python, pipeline'y danych i systemy oparte o LLM. Projekty, stack, kontakt.">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='9' fill='%237FE3C1'/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:      #17130F;   /* tło — ciepła czerń */
+  --surface: #201B15;   /* kafelki */
+  --text:    #EFE9E1;
+  --muted:   #9A9086;
+  --line:    #322B23;
+  --accent:  #7FE3C1;   /* jedyny mocny kolor na stronie */
+
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --sans:    "Manrope", system-ui, sans-serif;
+  --mono:    "JetBrains Mono", ui-monospace, monospace;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  padding:clamp(2.5rem,7vw,5rem) 1.4rem 3rem;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:16.5px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+
+.page{ max-width:780px; margin:0 auto; }
+
+a{ color:var(--accent); text-decoration:none; }
+a:hover{ text-decoration:underline; text-underline-offset:4px; }
+a:focus-visible{ outline:2px solid var(--accent); outline-offset:4px; border-radius:3px; }
+
+/* ---------- HERO ---------- */
+.eyebrow{
+  font-family:var(--mono); font-size:.75rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--muted); margin:0 0 1.2rem;
+}
+h1{
+  font-family:var(--display);
+  font-size:clamp(2.6rem,8.5vw,4.4rem);
+  line-height:1;
+  letter-spacing:-.035em;
+  margin:0 0 1rem;
+}
+.tagline{
+  font-size:clamp(1.05rem,2.6vw,1.25rem);
+  color:var(--muted);
+  max-width:34ch;
+  margin:0 0 2.6rem;
+}
+.tagline em{ color:var(--text); font-style:normal; }
+
+/* SYGNATURA STRONY — schemat tego, czym się zajmujesz.
+   Kropka to dane płynące przez pipeline. */
+.pipeline{
+  position:relative;
+  display:flex; align-items:center; justify-content:space-between;
+  margin:0 0 2.4rem;
+}
+.pipeline::before{
+  content:""; position:absolute; left:0; right:0; top:50%;
+  height:1px; background:var(--line);
+}
+.pipeline b{
+  position:relative; z-index:1;
+  background:var(--bg);
+  border:1px solid var(--line); border-radius:99px;
+  font-family:var(--mono); font-weight:400;
+  font-size:clamp(.6rem,2.2vw,.72rem);
+  color:var(--muted);
+  padding:.3rem clamp(.4rem,2vw,.8rem);
+}
+.pulse{
+  position:absolute; top:50%; width:7px; height:7px; margin-left:-3px;
+  border-radius:50%; background:var(--accent);
+  box-shadow:0 0 14px var(--accent);
+  transform:translateY(-50%);
+  animation:run 5s cubic-bezier(.6,0,.4,1) infinite;
+}
+@keyframes run{ 0%{left:0; opacity:0} 8%{opacity:1} 92%{opacity:1} 100%{left:100%; opacity:0} }
+
+.links{ display:flex; flex-wrap:wrap; gap:.55rem; list-style:none; margin:0; padding:0; }
+.links a{
+  display:inline-block; font-family:var(--mono); font-size:.78rem;
+  color:var(--text);
+  padding:.45rem .9rem;
+  border:1px solid var(--line); border-radius:99px;
+  transition:border-color .18s, color .18s;
+}
+.links a:hover{ border-color:var(--accent); color:var(--accent); text-decoration:none; }
+
+/* ---------- UKŁAD SEKCJI ---------- */
+section{ margin-top:clamp(3.5rem,9vw,5.5rem); }
+
+.row{ display:grid; grid-template-columns:130px 1fr; gap:2.4rem; }
+.row > h2{
+  font-family:var(--mono); font-size:.72rem; font-weight:400;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--muted);
+  margin:.35rem 0 0; position:sticky; top:2rem; align-self:start;
+}
+@media (max-width:720px){
+  .row{ grid-template-columns:1fr; gap:1rem; }
+  .row > h2{ position:static; }
+}
+
+p{ margin:0 0 1rem; }
+.lead{ max-width:62ch; color:#CFC7BC; }
+
+/* ---------- PROJEKTY ---------- */
+.project{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:1.5rem;
+  margin-bottom:1rem;
+  transition:border-color .18s, transform .18s;
+}
+.project:hover{ border-color:#4A4136; transform:translateY(-2px); }
+.project h3{
+  font-family:var(--display); font-size:1.35rem; font-weight:700;
+  letter-spacing:-.02em; margin:0 0 .7rem;
+}
+.project p{ color:var(--muted); max-width:60ch; margin:0 0 1rem; }
+
+.flow{
+  font-family:var(--mono); font-size:.74rem;
+  color:#C3BAAF;
+  background:rgba(127,227,193,.06);
+  border:1px solid rgba(127,227,193,.16);
+  border-radius:7px;
+  padding:.55rem .75rem;
+  margin:0 0 1rem !important;
+  overflow-x:auto; white-space:nowrap;
+}
+.flow span{ color:var(--accent); padding:0 .25rem; }
+
+.tags{
+  display:flex; flex-wrap:wrap; gap:.4rem;
+  list-style:none; margin:0 0 1.1rem; padding:0;
+  font-family:var(--mono); font-size:.7rem; color:var(--muted);
+}
+.tags li{ border:1px solid var(--line); border-radius:5px; padding:.15rem .5rem; }
+
+.project-links{ font-family:var(--mono); font-size:.78rem; margin:0 !important; }
+.project-links a + a{ margin-left:1.2rem; }
+
+/* ---------- STACK ---------- */
+.stack{ display:grid; gap:1.4rem; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); }
+.stack h4{
+  font-family:var(--mono); font-size:.7rem; font-weight:500;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--accent); margin:0 0 .3rem;
+}
+.stack p{ margin:0; font-size:.94rem; color:var(--muted); }
+
+/* ---------- STOPKA ---------- */
+footer{
+  margin-top:clamp(4rem,10vw,6rem); padding-top:1.4rem;
+  border-top:1px solid var(--line);
+  font-family:var(--mono); font-size:.72rem; color:var(--muted);
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; transition:none !important; }
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <!-- ========== HERO — [EDYTUJ] ========== -->
+  <header>
+    <p class="eyebrow">eskobello</p>
+    <h1>Filip Skobel</h1>
+    <p class="tagline">
+      Buduję <em>pipeline'y danych</em> i systemy oparte o <em>LLM</em>. Głównie w Pythonie.
+    </p>
+
+    <div class="pipeline">
+      <span class="pulse"></span>
+      <b>dane</b><b>pipeline</b><b>model</b><b>produkt</b>
+    </div>
+
+    <ul class="links">
+      <li><a href="https://github.com/eskobello">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/twoj-profil">LinkedIn</a></li>
+      <li><a href="mailto:twoj@email.com">E-mail</a></li>
+      <li><a href="cv.pdf">CV</a></li>
+    </ul>
+  </header>
+
+  <!-- ========== O MNIE — [EDYTUJ] ========== -->
+  <section class="row">
+    <h2>O mnie</h2>
+    <div>
+      <p class="lead">
+        Zajmuję się przenoszeniem danych z miejsc, w których są niewygodne, tam, gdzie da się
+        z nich coś wyciągnąć — a ostatnio też budowaniem warstwy LLM na wierzchu.
+        Najwięcej czasu spędzam w Pythonie, SQL-u i w logach.
+      </p>
+      <p class="lead">
+        Poniżej rzeczy, które faktycznie zbudowałem. Każda ma kod do przejrzenia.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== PROJEKTY — [EDYTUJ] ==========
+       Kopiujesz cały <article class="project">…</article> dla kolejnego projektu.
+       .flow = trasa danych. Nie kasuj tego — to najmocniejszy element strony. -->
+  <section class="row">
+    <h2>Projekty</h2>
+    <div>
+
+      <article class="project">
+        <h3>Monitor ofert pracy</h3>
+        <p class="flow">JustJoinIT / NFJ <span>→</span> scraper <span>→</span> deduplikacja <span>→</span> Postgres <span>→</span> Telegram</p>
+        <p>
+          Codzienny scraper trzech portali. Wykrywa to samo ogłoszenie wystawione w kilku
+          serwisach i powiadamia tylko o realnie nowych ofertach. Chodzi od 8 miesięcy
+          na darmowym VPS-ie.
+        </p>
+        <ul class="tags"><li>Python</li><li>Playwright</li><li>PostgreSQL</li><li>Docker</li><li>cron</li></ul>
+        <p class="project-links"><a href="#">Kod →</a><a href="#">Opis techniczny →</a></p>
+      </article>
+
+      <article class="project">
+        <h3>RAG nad dokumentacją</h3>
+        <p class="flow">PDF / Confluence <span>→</span> chunking <span>→</span> embeddingi <span>→</span> pgvector <span>→</span> API</p>
+        <p>
+          Wyszukiwarka semantyczna po ~2000 stron dokumentacji. Zbudowałem własny zestaw
+          pytań testowych, żeby porównać strategie dzielenia tekstu — trafność odpowiedzi
+          wzrosła z 61% do 84% po przejściu na podział po nagłówkach.
+        </p>
+        <ul class="tags"><li>Python</li><li>FastAPI</li><li>pgvector</li><li>OpenAI API</li></ul>
+        <p class="project-links"><a href="#">Kod →</a><a href="#">Demo →</a></p>
+      </article>
+
+      <article class="project">
+        <h3>Pipeline danych pogodowych</h3>
+        <p class="flow">API IMGW <span>→</span> Airflow <span>→</span> walidacja <span>→</span> DuckDB <span>→</span> dashboard</p>
+        <p>
+          Projekt do nauki orkiestracji: godzinowy import, testy jakości danych na wejściu
+          i backfill historii od 2020 roku. Opisałem też, co poszło źle przy strefach czasowych.
+        </p>
+        <ul class="tags"><li>Airflow</li><li>DuckDB</li><li>dbt</li><li>Streamlit</li></ul>
+        <p class="project-links"><a href="#">Kod →</a></p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========== STACK — [EDYTUJ] ========== -->
+  <section class="row">
+    <h2>Stack</h2>
+    <div class="stack">
+      <div><h4>Języki</h4><p>Python, SQL, bash</p></div>
+      <div><h4>Dane</h4><p>PostgreSQL, DuckDB, Airflow, dbt, pandas, Polars</p></div>
+      <div><h4>AI / LLM</h4><p>OpenAI API, embeddingi, pgvector, RAG</p></div>
+      <div><h4>Reszta</h4><p>Docker, Git, GitHub Actions, FastAPI, Linux</p></div>
+    </div>
+  </section>
+
+  <!-- ========== KONTAKT — [EDYTUJ] ========== -->
+  <section class="row">
+    <h2>Kontakt</h2>
+    <div>
+      <p class="lead">
+        Szukam pracy jako Data / AI Engineer. Najszybciej mailem:
+        <a href="mailto:twoj@email.com">twoj@email.com</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Napisane ręcznie w HTML i CSS · GitHub Pages · sierpień 2026
+  </footer>
+
+</main>
+</body>
+</html>
