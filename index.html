@@ -216,7 +216,7 @@ footer{
 
     <ul class="links">
       <li><a href="https://github.com/eskobello">GitHub</a></li>
-      <li><a href="https://linkedin.com/in/twoj-profil">LinkedIn</a></li>
+      <li><a href="https://www.linkedin.com/in/filip-skobel-122783289/">LinkedIn</a></li>
       <li><a href="mailto:twoj@email.com">E-mail</a></li>
       <li><a href="cv.pdf">CV</a></li>
     </ul>
@@ -229,10 +229,10 @@ footer{
       <p class="lead">
         Zajmuję się przenoszeniem danych z miejsc, w których są niewygodne, tam, gdzie da się
         z nich coś wyciągnąć — a ostatnio też budowaniem warstwy LLM na wierzchu.
-        Najwięcej czasu spędzam w Pythonie, SQL-u i w logach.
+        Najwięcej czasu spędzam w Pythonie.
       </p>
       <p class="lead">
-        Poniżej rzeczy, które faktycznie zbudowałem. Każda ma kod do przejrzenia.
+        Poniżej prowadzone projekty. Każdy ma kod do przejrzenia.
       </p>
     </div>
   </section>
@@ -245,37 +245,22 @@ footer{
     <div>
 
       <article class="project">
-        <h3>Monitor ofert pracy</h3>
-        <p class="flow">JustJoinIT / NFJ <span>→</span> scraper <span>→</span> deduplikacja <span>→</span> Postgres <span>→</span> Telegram</p>
+        <h3>RAG giełda GPW</h3>
+        <p class="flow">PDF <span>→</span> chunking <span>→</span> embeddingi <span>→</span> pgvector <span>→</span> API</p>
         <p>
-          Codzienny scraper trzech portali. Wykrywa to samo ogłoszenie wystawione w kilku
-          serwisach i powiadamia tylko o realnie nowych ofertach. Chodzi od 8 miesięcy
-          na darmowym VPS-ie.
-        </p>
-        <ul class="tags"><li>Python</li><li>Playwright</li><li>PostgreSQL</li><li>Docker</li><li>cron</li></ul>
-        <p class="project-links"><a href="#">Kod →</a><a href="#">Opis techniczny →</a></p>
-      </article>
-
-      <article class="project">
-        <h3>RAG nad dokumentacją</h3>
-        <p class="flow">PDF / Confluence <span>→</span> chunking <span>→</span> embeddingi <span>→</span> pgvector <span>→</span> API</p>
-        <p>
-          Wyszukiwarka semantyczna po ~2000 stron dokumentacji. Zbudowałem własny zestaw
-          pytań testowych, żeby porównać strategie dzielenia tekstu — trafność odpowiedzi
-          wzrosła z 61% do 84% po przejściu na podział po nagłówkach.
+          IN PROGRESS...
         </p>
         <ul class="tags"><li>Python</li><li>FastAPI</li><li>pgvector</li><li>OpenAI API</li></ul>
         <p class="project-links"><a href="#">Kod →</a><a href="#">Demo →</a></p>
       </article>
 
       <article class="project">
-        <h3>Pipeline danych pogodowych</h3>
-        <p class="flow">API IMGW <span>→</span> Airflow <span>→</span> walidacja <span>→</span> DuckDB <span>→</span> dashboard</p>
+        <h3>Prompt optimizer</h3>
+        <p class="flow">python <span>→</span> langchain <span>→</span> llm <span>→</span> streamlit <span>→</span> deploy</p>
         <p>
-          Projekt do nauki orkiestracji: godzinowy import, testy jakości danych na wejściu
-          i backfill historii od 2020 roku. Opisałem też, co poszło źle przy strefach czasowych.
+          Projekt do konkretnego formułowania promptów: początkowy prompt użytkownika na wejściu, max iteracji oraz sugestie poprawy i przykładowe ulepszenie.
         </p>
-        <ul class="tags"><li>Airflow</li><li>DuckDB</li><li>dbt</li><li>Streamlit</li></ul>
+        <ul class="tags"><li>python</li><li>langchain</li><li>Streamlit</li></ul>
         <p class="project-links"><a href="#">Kod →</a></p>
       </article>
 
@@ -305,7 +290,7 @@ footer{
   </section>
 
   <footer>
-    Napisane ręcznie w HTML i CSS · GitHub Pages · sierpień 2026
+    Napisane za pomocą AI w HTML i CSS · GitHub Pages · sierpień 2026
   </footer>
 
 </main>
